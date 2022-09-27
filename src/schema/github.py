@@ -3,12 +3,12 @@ from typing import Optional
 from fastapi_utils.api_model import APIModel
 
 
-class GuitHubList(APIModel):
+class GitHubList(APIModel):
     repositories: list = []
     total: int
 
 
-class GuitHubFilter(APIModel):
+class GitHubFilter(APIModel):
     user: Optional[str]
     language: Optional[str]
     readme: Optional[str]
@@ -17,11 +17,11 @@ class GuitHubFilter(APIModel):
     limit: int = 10
 
 
-class GuitHubFilterList(GuitHubList):
-    filters: GuitHubFilter
+class GitHubFilterList(GitHubList):
+    filters: GitHubFilter
 
 
-class GuitSearch(APIModel):
+class GitHubSearch(APIModel):
     id: int
     name: str
     full_name: str
