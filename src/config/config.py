@@ -15,7 +15,7 @@ class Settings(BaseSettings):
     PORT = int(os.getenv("PORT"))
     LOG_LEVEL = os.getenv("LOG_LEVEL")
     DEBUG: bool = os.getenv("DEBUG")
-    GUITHUB_TOKEN = os.getenv("GUITHUB_TOKEN")
+    GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
 
 
 @lru_cache

@@ -1,7 +1,7 @@
 from fastapi_utils.inferring_router import InferringRouter
 from dependency.serialize import ORJSONResponse
 from schema.exception import ExceptionSchema
-from endpoint.guithub import github_router
+from endpoint.github import github_router
 
 from starlette.status import (
     HTTP_400_BAD_REQUEST,

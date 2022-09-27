@@ -1,26 +1,26 @@
-from config.guithub import github_client
-from schema.guithub import GuitHubList, GuitHubFilter, GuitHubFilterList, GuitSearch
-from fastapi import Depends
+from config.github import github_client
+from schema.github import GitHubList, GitHubFilter, GitHubFilterList, GitHubSearch
 
-class GuitHub:
+
+class GitHub:
 
     def __init__(self, user):
         self.user = user.get_user()
 
-    async def get_all(self) -> GuitHubList:
+    async def get_all(self) -> GitHubList:
         repositories = []
         for repo in self.user.get_repos():
             repositories.append(repo.name)
         total = len(repositories)
-        return GuitHubList(repositories=repositories, total=total)
+        return GitHubList(repositories=repositories, total=total)
 
-    async def get_name_filter(self, name: str) -> GuitSearch:
+    async def get_name_filter(self, name: str) -> GitHubSearch:
         path = f"{self.user.login}/{name}"
         repo = github_client.get_repo(path)
-        return GuitSearch(id=repo.id, name=repo.name, full_name=repo.full_name, language=repo.language)
+        return GitHubSearch(id=repo.id, name=repo.name, full_name=repo.full_name, language=repo.language)
 
     @staticmethod
-    async def get_filter(filter_schema: GuitHubFilter):
+    async def get_filter(filter_schema: GitHubFilter):
         repositories = []
         query_list = []
 
@@ -49,7 +49,7 @@ class GuitHub:
 
         total = len(repositories)
 
-        filters = GuitHubFilter(
+        filters = GitHubFilter(
             user=filter_schema.user,
             language=filter_schema.language,
             readme=filter_schema.readme,
@@ -57,5 +57,5 @@ class GuitHub:
             order=filter_schema.order,
             limit=filter_schema.limit
         )
-        return GuitHubFilterList(repositories=repositories, total=total, filters=filters)
+        return GitHubFilterList(repositories=repositories, total=total, filters=filters)
 
