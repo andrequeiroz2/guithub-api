@@ -14,6 +14,8 @@ class GitHubFilter(APIModel):
     readme: Optional[str]
     sort: Optional[str] = "updated"
     order: Optional[str] = "asc"
+    archived: Optional[bool] = False
+    alphabetical: Optional[bool]
     limit: int = 10
 
 
@@ -26,3 +28,7 @@ class GitHubSearch(APIModel):
     name: str
     full_name: str
     language: str
+
+
+class AlphabeticalFilter(APIModel):
+    alphabetical: Optional[bool] = True

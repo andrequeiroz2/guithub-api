@@ -38,16 +38,19 @@ GUITHUB_TOKEN=asdasdasasdadwerwrrw
 ### Na pasta src/ inicie o app:
 
 `
-uvicorn main:app --reload --port 6000
+uvicorn main:app --reload --port 5000
 `
 
 ## Endpoints:
 
 ### Lista todos os repositorios do usuario logado:
 
+params Query: 
+- alphabetical=boolean
+
 `
 request:
-http://127.0.0.1:6000/api/github/all/
+http://127.0.0.1:5000/all/?alphabetical=false
 `
 
 ### Lista dados do repositorio do usuario logado:
@@ -57,7 +60,7 @@ params Query:
 
 `
 request:
-http://127.0.0.1:6000/api/github/search/name/?name=boto3s3
+http://127.0.0.1:5000/search/name/?name=boto3s3
 `
 
 ### Lista repositorios por filtros:
@@ -69,10 +72,11 @@ params Query:
 - user = tipo(string); name do usuario.
 - language = tipo(string); linguagem utilizada no repositorio.
 - readme = tipo(string); palavra contida no readme.
-
+- archived = tipo(boolean); valor padrao="false".
+- alphabetical = tipo(boolean)
 `
 request:
-http://127.0.0.1:6000/api/github/search/filters/?sort=stars&order=desc&limit=40&user=andrequeiroz2&language=python&readme=device
+http://localhost:5000/search/filters/?sort=updated&order=desc&limit=3&user=andrequeiroz2&language=python&readme=device&archived=false&alphabetical=true
 `
 
 ## Util:
