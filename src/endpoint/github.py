@@ -1,7 +1,7 @@
 from fastapi_utils.inferring_router import InferringRouter
 from fastapi_utils.cbv import cbv
 from business.github import GitHub
-from schema.github import GitHubList, GitHubFilter, GitHubFilterList, GitHubSearch
+from schema.github import GitHubList, GitHubFilter, GitHubFilterList, GitHubSearch, AlphabeticalFilter
 from config.github import github_client
 from fastapi import Depends
 
@@ -12,8 +12,8 @@ github_router = InferringRouter()
 class GitHubRouter:
 
     @github_router.get("/all/")
-    async def get_all(self) -> GitHubList:
-        return await GitHub(github_client).get_all()
+    async def get_all(self, filter_schema: AlphabeticalFilter = Depends()) -> GitHubList:
+        return await GitHub(github_client).get_all(filter_schema)
 
     @github_router.get("/search/name/")
     async def get_name_filter(self, name: str) -> GitHubSearch:

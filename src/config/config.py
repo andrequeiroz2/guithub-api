@@ -1,6 +1,6 @@
 import os
 from dotenv import find_dotenv, load_dotenv
-from pydantic import BaseSettings, root_validator
+from pydantic import BaseSettings
 from functools import lru_cache
 
 load_dotenv(find_dotenv(".env"))
