@@ -1,0 +1,1 @@
+web: gunicorn -w 4 -k uvicorn.workers.UvicornWorker -b :5000 src.main:app
